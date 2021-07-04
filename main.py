@@ -9,7 +9,10 @@ token = sys.argv[1]
 
 @client.command()
 async def hello(ctx):
-    print("hello command")
     await ctx.send("Woof!")
+
+@client.command()
+async def cool(ctx):
+    await ctx.send("cool cool cool cool cool cool")
 
 client.run(token)
