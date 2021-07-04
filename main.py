@@ -1,54 +1,17 @@
-import discord
 from discord.ext import commands
-from discord.ext.commands import Bot
-import sys
+from discord import Embed, Color, Status
 
-client = commands.Bot(command_prefix=";")
+bot = commands.Bot(command_prefix=commands.when_mentioned_or('?'))
 
-token = sys.argv[1]
+bot.remove_command('help')
 
-@client.command()
-async def hello(ctx):
-    await ctx.send("Woof!")
+@bot.event
+async def on_ready():
+    await bot.change_presence(status=Status.idle)
 
-@client.command()
-async def cool(ctx):
-    await ctx.send("cool cool cool cool cool cool")
+extensions = ['cmds.Commands']
 
-client.run(token)
+for cogs in extensions:
+    bot.load_extension(f'{cogs}')
 
-#main file code
-# from discord.ext import commands
-# from discord import Embed, Color, Status
-
-# bot = commands.Bot(command_prefix=commands.when_mentioned_or('#'))
-
-# bot.remove_command('help')
-
-# @bot.event
-# async def on_ready():
-#     await bot.change_presence(status=Status.idle)
-
-# extensions = ['Commands', 'Accesories', 'Shop']
-
-# for cogs in extensions:
-#     bot.load_extension(f'{cogs}')
-
-# bot.run(token)
-
-
-# Commands file code
-# from discord.ext import commands
-# from discord import Embed, Color
-
-# class Command(commands.Cog):
-#     def _init_(self, bot):
-#         self.bot = bot
-
-#     @commands.group(name='commands', invoke_without_command=True)
-#     async def cmdshelp(self, ctx):
-#         await ctx.send('test')
-
-#     @cmdshelp.command(name="synatx")
-#     async def syntax(self, ctx):
-#         await ctx.send('test')
+bot.run("token")
