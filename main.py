@@ -1,11 +1,15 @@
 from discord.ext import commands
 from discord import Embed, Color, Status
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 #Setting the Syntax
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('?'))
 
 
-token = sys.argv[1]
+token = os.getenv('TOKEN')
 
 bot.remove_command('help')
 
