@@ -4,6 +4,9 @@ from discord import Embed, Color, Status
 #Setting the Syntax
 bot = commands.Bot(command_prefix=commands.when_mentioned_or('?'))
 
+
+token = sys.argv[1]
+
 bot.remove_command('help')
 
 @bot.event
@@ -17,4 +20,4 @@ extensions = ['cmds.Commands']
 for cogs in extensions:
     bot.load_extension(f'{cogs}')
 
-bot.run("token")
+bot.run(token)
