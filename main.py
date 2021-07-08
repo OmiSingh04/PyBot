@@ -13,6 +13,7 @@ bot = commands.Bot(command_prefix=commands.when_mentioned_or('?'))
 token = os.getenv('TOKEN')
 db_user = os.getenv('DB_USER')
 db_password = os.getenv('DB_PASSWORD')
+db_database = os.getenv('DB_DATABASE')
 
 bot.remove_command('help')
 
@@ -27,6 +28,6 @@ extensions = ['cmds.Commands']
 for cogs in extensions:
     bot.load_extension(f'{cogs}')
 
-bot.add_cog(DbCommands(bot, db_user, db_password))
+bot.add_cog(DbCommands(bot, db_user, db_password, db_database))
 
 bot.run(token)
