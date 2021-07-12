@@ -2,4 +2,5 @@
 *~
 *.swp
 *.pyc
-test*
+test.*
+error_log.txt

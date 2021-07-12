@@ -1,7 +1,7 @@
 from discord.ext import commands
 from discord import Embed, Color, Status
 from dotenv import load_dotenv
-from db_manager.DbCommands import DbCommands
+from db_manager.db_commands import DbCommands
 import os
 
 load_dotenv()
@@ -19,7 +19,7 @@ bot.remove_command('help')
 
 @bot.event
 async def on_ready():
-    await bot.change_presence(status=Status.idle)
+    await bot.change_presence(status=Status.user_idle)
 
 #List of Cogs
 extensions = ['cmds.Commands']
