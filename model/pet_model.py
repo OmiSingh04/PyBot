@@ -18,7 +18,7 @@ class Cat(Pet):
         pass
 
     def meow(self):
-        return "Meow Meow!"
+        return "Meow Meow!!"
 
 class Dog(Pet):
     def __init__(self, health, hunger, happiness, hun_rate, breed):
