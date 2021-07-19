@@ -2,7 +2,7 @@ from discord.ext import commands
 import discord
 from discord import Embed, Color, Status
 from dotenv import load_dotenv
-from db_manager.db_commands import DbCommands
+# from db_manager.db_commands import DbCommands
 from shop.shop_manager import Shop
 import os
 
