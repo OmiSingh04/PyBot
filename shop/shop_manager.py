@@ -1,9 +1,26 @@
 from discord.ext import commands
 from discord import Embed, Color, Message
+import os
 
 class Shop(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+
+    @commands.Cog.listener()
+    async def on_reaction_add(self, reaction, user):
+        if(not(user == self.bot.user)):      
+            id = user.id
+            user = str(user)
+            user_name=user[0:user.index('#')]
+            users = os.listdir(f'{os.getcwd()}\\account\\')
+            print(f'{user_name}.json')
+            if(f'{user_name}.json' in users):
+                print("yes")
+                # users[users.index(f'{user_name}.json')]['treats']-=1
+                print(users[users.index(f'{user_name}.json')])
+        
+
 
     @commands.command(name='shop')
     async def shop(self, ctx):

@@ -7,9 +7,9 @@ from time import sleep
 
 data={
 	"name":"",
-	"user_id":"",
-	"treats":"",
-	"boosts":""
+	"user_id":0,
+	"treats":0,
+	"boosts":0
 }
 
 class Json(commands.Cog):
@@ -23,24 +23,24 @@ class Json(commands.Cog):
 		data['treats'] = 500
 		data['boosts'] = 0
 		if(self.json_register(data)):
-			await ctx.send('Success!!')
+			embed = Embed(title='Success', description="You are given 500 treats", color=Color.random())
+			await ctx.send(embed=embed)
 		else:
-			await ctx.send('Already registered')
+			embed = Embed(title="Already registered", description="Seems like you have already registered", color=Color.random())
+			await ctx.send(embed=embed)
 
 	def json_register(self, data):
-		if(not(path.isdir(f'{getcwd()}/account'))):
-			mkdir(f'{getcwd()}/account')
-		elif(not(path.isdir(f'{getcwd()}/account/{data["name"]}.json'))):
-			print(path.isdir(f'{getcwd()}/account/{data["name"]}.json'))
+		if(not(path.exists(f'{getcwd()}\\account'))):
+			mkdir(f'{getcwd()}\\account')
+		elif(not(path.exists(f'{getcwd()}\\account\\{data["name"]}.json'))):
 			with open(f"{data['name']}.json", 'w') as fp:
 				json.dump(data, fp)
 
 			sleep(5)
-			replace(f'{getcwd()}/{data["name"]}.json', f'{getcwd()}/account/{data["name"]}.json')
+			replace(f'{getcwd()}\\{data["name"]}.json', f'{getcwd()}\\account\\{data["name"]}.json')
 
 			return True
 		else:
-			print('edan')
 			return False
 
 def setup(bot):
