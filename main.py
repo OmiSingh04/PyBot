@@ -25,7 +25,7 @@ async def on_ready():
     await bot.change_presence(status=Status.idle, activity = discord.Game(name = "Woofies"))
 
 #List of Cogs
-extensions = ['cmds.Commands', 'shop.shop_manager', 'model.json_class']
+extensions = ['cmds.Commands', 'shop.shop_manager', 'data.json_manager']
 
 #initiation of Cogs
 for cogs in extensions:
