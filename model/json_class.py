@@ -35,10 +35,8 @@ class Json(commands.Cog):
 		elif(not(path.exists(f'{getcwd()}\\account\\{data["name"]}.json'))):
 			with open(f"{data['name']}.json", 'w') as fp:
 				json.dump(data, fp)
-
 			sleep(5)
 			replace(f'{getcwd()}\\{data["name"]}.json', f'{getcwd()}\\account\\{data["name"]}.json')
-
 			return True
 		else:
 			return False
