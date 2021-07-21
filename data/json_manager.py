@@ -33,14 +33,14 @@ class Json(commands.Cog):
 	async def balance(self, ctx):
 		user=ctx.author.name
 		data=json.load(open(f'{getcwd()}\\account\\{user}.json'))
-		await ctx.send(embed=Embed(title='\U0001F9B4 Balance', description=f'You have {data["treats"]} treats', color=Color.random()))
+		await ctx.send(embed=Embed(title="\U0001F9B4 Balance", description=f"`Your balance is {data['treats']} treats`"))
 
 	def json_register(self, data):
 		if(not(path.exists(f'{getcwd()}\\account'))):
 			mkdir(f'{getcwd()}\\account')
 		elif(not(path.exists(f'{getcwd()}\\account\\{data["name"]}.json'))):
-			with open(f"{data['name']}.json", 'w') as fp:
-				json.dump(data, fp)
+			with open(f"{data['name']}.json", 'w') as d:
+				json.dump(data, d)
 			sleep(5)
 			replace(f'{getcwd()}\\{data["name"]}.json', f'{getcwd()}\\account\\{data["name"]}.json')
 			return True
