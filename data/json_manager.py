@@ -29,6 +29,12 @@ class Json(commands.Cog):
 			embed = Embed(title="Already registered", description="Seems like you have already registered", color=Color.random())
 			await ctx.send(embed=embed)
 
+	@commands.command(name="balance", aliases=['bal'])
+	async def balance(self, ctx):
+		user=ctx.author.name
+		data=json.load(open(f'{getcwd()}\\account\\{user}.json'))
+		await ctx.send(embed=Embed(title='\U0001F9B4 Balance', description=f'You have {data["treats"]} treats', color=Color.random()))
+
 	def json_register(self, data):
 		if(not(path.exists(f'{getcwd()}\\account'))):
 			mkdir(f'{getcwd()}\\account')
