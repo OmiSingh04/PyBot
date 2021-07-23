@@ -22,6 +22,13 @@ class Shop(commands.Cog):
                     data['treats']-=5
                     if(self.save_userinfo(user_name, data)):
                         await channel.send(f'<@!{id}>',embed=Embed(title='`Payment done!!`', color=Color.random()))
+                if(str(reaction) == '\U00002B06'):
+                    if(not(data['treats']<1000)):
+                        data['treats']-=1000
+                        if(self.save_userinfo(user_name, data)):
+                            await channel.send(f'<@!{id}>', embed=Embed(title='`Payment done!!`', color=Color.random()))
+                    else:
+                        await channel.send(f'<@!{id}>', embed=Embed(title='`You don\'t have enough treats to buy the boost.`', color=Color.random()))
         
     def get_userinfo(self, user):
         users = os.listdir(f'{os.getcwd()}\\account\\')
@@ -66,23 +73,26 @@ class Shop(commands.Cog):
             users_list.append(data["name"])
         un_treats=treats    
         self.mergeSort(treats)
-        index =self.find_index(un_treats, treats)
+        print(treats)
+        print(un_treats)
+        index =self.find_index(un_treats, treats[::-1])
+        sno=0
+        print(index)
         for i in index:
-            embed.add_field(name=f'`{users_list[i]}`', value=f"`{un_treats[i]} treats`", inline=False)
+            sno+=1
+            embed.add_field(name=f'`{sno}.{users_list[i]}`', value=f"`{un_treats[i]} treats`", inline=False)
+        users_list=0
+        un_treats=0
         await ctx.send(embed=embed)    
 
-    def mergeSort(self, arr):
+    def mergeSort(self,arr):
         if len(arr) > 1:
             mid=len(arr)//2
-
             L = arr[:mid]
             R = arr[mid:]
-
             self.mergeSort(L)
             self.mergeSort(R)
-
             i=j=k=0
-
             while i < len(L) and j < len(R):
                 if L[i] < R[j]:
                     arr[k] = L[i]
@@ -96,26 +106,20 @@ class Shop(commands.Cog):
                 arr[k]=L[i]
                 i+=1
                 k+=1
-
             while j < len(R):
                 arr[k]=R[j]
                 j+=1
                 k+=1
 
-    def find_index(self, arr, sorted_arr):
-        index_list=[]
-        i=0
-        j=0
-        while i<=len(sorted_arr)-1:
-            if(sorted_arr[j]==arr[i]):
-                index_list.append(i)
-                j+=1
-                if(j==len(sorted_arr)):
-                    break
-                i=0
-            else:
-                i+=1
-        
+    def find_index(self,arr, sorted_arr):
+        index_list = []
+        for i in range(len(sorted_arr)):
+            print(i)
+            for j in range(len(arr)):
+                print(j)
+                if(arr[j]==sorted_arr[i] and not(sorted_arr[j-1]==sorted_arr[j])):
+                    index_list.append(j)
+                    print(index_list)
         return index_list
 
 def setup(bot):
