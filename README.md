@@ -4,4 +4,4 @@ Pet bot made for our server by members of the server. This project also our Firs
 
 
 ## Uses -
-[Discord.py](https://discordpy.readthedocs.io/en/stable/)\
+[Discord.py](https://discordpy.readthedocs.io/en/stable/)
