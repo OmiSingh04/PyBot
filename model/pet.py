@@ -1,3 +1,6 @@
 class Pet:
-	def __init__(self):
-		pass
+    def __init__():
+        pass
+
+    def bruh():
+        pass
