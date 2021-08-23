@@ -6,16 +6,19 @@ class Pet:
         self.ability = ability
         self.hunger = 0
         self.clock = pygame.time.Clock()
-
+        self.running = False
 
     def tick(self):
-        hunger+=5
+        print("reeeeee")
+        pass
 
-    def feed(self,amount)
+    def feed(self,amount):
         self.hunger -= amount
 
     def start(self):
         self.running = True
-        while running:
-            tick()
-            clock.tick(1/60)
+        while self.running:
+            self.tick()
+            self.clock.tick(1/60)
+
+    

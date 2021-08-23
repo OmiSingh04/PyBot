@@ -5,3 +5,4 @@
 test.*
 error_log.txt
 *.json
+*driver.py
