@@ -32,5 +32,4 @@ for cogs in extensions:
     bot.load_extension(f'{cogs}')
 
 #bot.add_cog(DbCommands(bot, db_user, db_password, db_database))
-
 bot.run(token)
